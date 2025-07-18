@@ -5,14 +5,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseClass {
     public static WebDriver driver;
+    public static ConfigReader config;
 
-    // Method to initialize WebDriver
     public static void setup() {
+        config = new ConfigReader();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
-    // Method to close WebDriver
     public static void tearDown() {
         if (driver != null) {
             driver.quit();

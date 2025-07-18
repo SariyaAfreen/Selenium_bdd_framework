@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Smart University Tests]">
+  <test thread-count="5" name="Sprint 1 Automated Test Cases(failed)">
+    <classes>
+      <class name="tests.LoginTest">
+        <methods>
+          <include name="closeBrowser"/>
+          <include name="openBrowser"/>
+          <include name="loginWithInvalidCredentials"/>
+        </methods>
+      </class> <!-- tests.LoginTest -->
+    </classes>
+  </test> <!-- Sprint 1 Automated Test Cases(failed) -->
+</suite> <!-- Failed suite [Smart University Tests] -->

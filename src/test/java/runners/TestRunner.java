@@ -1,27 +1,20 @@
 package runners;
-
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
-// Run with JUnit
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    // Path to feature files
     features = "src/test/resources/features",
-
-    // Path to step definition packages
     glue = "stepDefinitions",
-
-    // To generate readable console output and reports
     plugin = {
         "pretty",
-        "html:target/cucumber-reports.html",
-        "json:target/cucumber-reports.json"
+        "html:target/cucumber-report.html",
+        "json:target/cucumber.json"
     },
-
-    // Optional settings
     monochrome = true
 )
-public class TestRunner {
+
+public class TestRunner extends AbstractTestNGCucumberTests {
 }
