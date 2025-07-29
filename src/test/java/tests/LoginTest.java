@@ -46,37 +46,50 @@ public class LoginTest extends BaseClass {
 
     @Test
     public void loginWithInvalidCredentials() {
-        driver.findElement(By.id("username")).sendKeys("invalidUser");
-        driver.findElement(By.id("password")).sendKeys("wrongPass");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        System.out.println("⚠️ Solve the CAPTCHA manually and press ENTER...");
+        // Enter invalid credentials
+        driver.findElement(By.id("username")).clear();
+        driver.findElement(By.id("username")).sendKeys("nawabsariya2003@gmail.com");
+
+        driver.findElement(By.id("password")).clear();
+        driver.findElement(By.id("password")).sendKeys("122");
+
+        // CAPTCHA input (manual)
+        System.out.println("⚠️ Please solve the CAPTCHA manually and press ENTER...");
         new Scanner(System.in).nextLine();
 
         driver.findElement(By.id("submit")).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        // Wait for error messages to appear
+        String usernameError = "";
+        String passwordError = "";
 
         try {
-            // If alert appears
-            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-            String alertText = alert.getText();
-            System.out.println("✅ Alert appeared: " + alertText);
-            Assert.assertTrue(alertText.toLowerCase().contains("invalid"));
-            alert.accept();
+            WebElement usernameErrorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("usernameError")));
+            usernameError = usernameErrorElement.getText();
         } catch (TimeoutException e) {
-            // If no alert, check for error message on page containing 'not correct'
-            try {
-                WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//*[contains(text(),'not correct')]")
-                ));
-                String errorMsg = errorElement.getText();
-                System.out.println("✅ Error message displayed: " + errorMsg);
-                Assert.assertTrue(errorMsg.toLowerCase().contains("not correct"));
-            } catch (TimeoutException ex) {
-                Assert.fail("❌ Neither alert nor error message appeared for invalid login.");
-            }
+            System.out.println("⚠️ Username error not displayed.");
         }
+
+        try {
+            WebElement passwordErrorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("passwordError")));
+            passwordError = passwordErrorElement.getText();
+        } catch (TimeoutException e) {
+            System.out.println("⚠️ Password error not displayed.");
+        }
+
+        // Log and Assert
+        System.out.println("🔍 Username Error: " + usernameError);
+        System.out.println("🔍 Password Error: " + passwordError);
+
+        Assert.assertEquals(usernameError, "Username is not correct", "❌ Username error message mismatch");
+        Assert.assertEquals(passwordError, "Password is not correct", "❌ Password error message mismatch");
+
+        System.out.println("✅ Invalid login scenario tested successfully.");
     }
+
+
     @Test
     public void loginWithoutPassword() {
         driver.findElement(By.id("username")).sendKeys("admin");

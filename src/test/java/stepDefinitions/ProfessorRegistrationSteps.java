@@ -4,6 +4,7 @@ import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import utilities.CSVReaderUtil;
 import utilities.DriverSetup;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class ProfessorRegistrationSteps {
     }
 
     @When("the user selects {string} from the country dropdown")
-    public void the_user_selects_country(String country) {
+    public void the_user_selects_country_from_the_country_dropdown(String country) {
         Select countrySelect = new Select(driver.findElement(By.id("country")));
         countrySelect.selectByVisibleText(country);
     }
@@ -28,14 +29,14 @@ public class ProfessorRegistrationSteps {
     public void the_state_dropdown_should_be_populated() {
         Select stateSelect = new Select(driver.findElement(By.id("state")));
         List<WebElement> options = stateSelect.getOptions();
-        Assert.assertTrue(options.size() > 1, "States should be populated for selected country.");
+        Assert.assertTrue(options.size() > 1, "State dropdown is not populated.");
     }
 
     @Then("the city dropdown should be populated")
     public void the_city_dropdown_should_be_populated() {
         Select citySelect = new Select(driver.findElement(By.id("city")));
         List<WebElement> options = citySelect.getOptions();
-        Assert.assertTrue(options.size() > 1, "Cities should be populated for selected state.");
+        Assert.assertTrue(options.size() > 1, "City dropdown is not populated.");
         driver.quit();
     }
 }

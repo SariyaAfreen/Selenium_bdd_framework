@@ -12,7 +12,7 @@ Feature: Login Functionality
     When the user enters invalid username and password
     And solves the captcha
     And clicks the login button
-    Then an alert with message containing "invalid" should appear
+    Then an alert with message containing "is not correct" should appear
 
   Scenario: Login without password
     Given the user is on the login page

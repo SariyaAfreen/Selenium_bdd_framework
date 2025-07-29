@@ -38,5 +38,14 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/Cucumber_Jars/cucumber-testng-6.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/Cucumber_Jars/cucumber-junit-7.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/.m2/repository/org/apache/logging/log4j/log4j-api/2.18.0/log4j-api-2.18.0.jar" sourcepath="C:/Users/Lenovo/.m2/repository/org/apache/logging/log4j/log4j-api/2.18.0/log4j-api-2.18.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.apache.logging.log4j"/>
+			<attribute name="maven.artifactId" value="log4j-api"/>
+			<attribute name="maven.version" value="2.18.0"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
